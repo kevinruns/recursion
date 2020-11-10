@@ -1,27 +1,17 @@
-def fibs(num)
+def fibs(pos)
   last1 = 0
-  puts last1
   last2 = 1
-  puts last2
-  (1..num).each do
+  (1..pos).each do
     puts next1 = last2 + last1
     last1 = last2
     last2 = next1
   end
 end
 
-def fibs_rec(num)
-  return num if num < 2
-
-  fibs_rec(num - 2) + fibs_rec(num - 1)
-end
-
-def fib_wrap(num)
-  arr = []
-  (0..num).each do |i|
-    arr[i] = fibs_rec(i)
-  end
-  arr
+def fibs_rec(pos)
+  return [0,1,1].shift(pos) if pos == 1 || pos == 2 || pos == 3
+  fib_arr = fibso_recc(pos-1)
+  fib_arr.push(fibso_recc(pos-1)[pos-2] + fibso_recc(pos-2)[pos-3])
 end
 
 def merge_sort(arr)
