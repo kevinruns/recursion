@@ -24,50 +24,32 @@ def fib_wrap(num)
   arr
 end
 
-
-# merge sort algorithm
 def merge_sort(arr)
-  p "** calling merge sort*****  array: #{arr}"
   new_arr = []
-
   return arr if arr.length < 2
 
-  p "****** spliting **********"
-
-  # split array
+  # recursively split
   half = arr.length / 2
   l_arr = arr[0..(half - 1)]
-  p "left array: #{l_arr} "
   l_arr = merge_sort(l_arr)
-  p "returned left"
   r_arr = arr[half..-1]
-  p "right array: #{r_arr} "
   r_arr = merge_sort(r_arr)
-  p "returned right"
 
-  p "****** finish split move to merge **********"
-
-  print ("\nleft #{l_arr}   right #{r_arr} \n")
   # merge left / right
   l_arr.each do |left|
     right = r_arr[0]
     if right.nil? || left < right
-      p "shift left"
-      p new_arr << left
+      new_arr << left
     else
-      p "shift right"
-      p new_arr << right
+      new_arr << right
       r_arr.shift
       redo
     end
   end
 
   new_arr += r_arr
-
-  p "new array:  #{new_arr}"
-
   new_arr
 end
 
 arr = [4, 18, 65, 2, 1, 7, 9, 3]
-p  merge_sort(arr)
+p merge_sort(arr)
